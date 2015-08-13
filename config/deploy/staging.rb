@@ -6,7 +6,7 @@ set :branch, "master"
 
 # Nginx VirtualHost uses this
 set :server_name, "webdev.sg"
-set :server_unused_name, "webdev.sg"
+# set :server_unused_name, "webdev.sg"
 
 set :ssh_options, {
   port: 634
@@ -24,8 +24,8 @@ set :rails_env, :staging
 set :unicorn_worker_count, 2
 
 # building nginx config file
-set :enable_ssl, true
-set :force_ssl, true
+# set :enable_ssl, true
+# set :force_ssl, true
 
 # Simple Role Syntax
 # ==================
