@@ -1,13 +1,41 @@
+# ssh -p 634 deploy@128.199.168.134
+# knife solo bootstrap root@128.199.168.134
+# knife solo cook deploy@128.199.168.134 -p 634
 set :stage, :staging
+set :branch, "master"
+
+# Nginx VirtualHost uses this
+set :server_name, "webdev.sg"
+set :server_unused_name, "webdev.sg"
+
+set :ssh_options, {
+  port: 634
+}
+
+set :full_app_name, "#{fetch(:application)}_#{fetch(:stage)}"
+
+server 'themestage.com', user: 'deploy', roles: %w{web app db}, primary: true
+
+set :deploy_to, "/home/#{fetch(:deploy_user)}/apps/#{fetch(:full_app_name)}"
+
+# don't try and infer something as important as environment from stage name.
+set :rails_env, :staging 
+
+set :unicorn_worker_count, 2
+
+# building nginx config file
+set :enable_ssl, true
+set :force_ssl, true
 
 # Simple Role Syntax
 # ==================
 # Supports bulk-adding hosts to roles, the primary
 # server in each group is considered to be the first
 # unless any hosts have the primary property set.
-role :app, %w{deploy@example.com}
-role :web, %w{deploy@example.com}
-role :db,  %w{deploy@example.com}
+# Don't declare `role :all`, it's a meta role
+# role :app, %w{deploy@example.com}
+# role :web, %w{deploy@example.com}
+# role :db,  %w{deploy@example.com}
 
 # Extended Server Syntax
 # ======================
@@ -15,7 +43,7 @@ role :db,  %w{deploy@example.com}
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
+# server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
@@ -38,5 +66,3 @@ server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
 #     # password: 'please use keys'
 #   }
 # setting per server overrides global ssh_options
-
-# fetch(:default_env).merge!(rails_env: :staging)
