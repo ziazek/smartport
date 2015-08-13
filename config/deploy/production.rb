@@ -3,8 +3,8 @@ set :branch, "master"
 
 # Nginx VirtualHost uses this
 # change to foodheart.org
-set :server_name, "foodheart.org"
-set :server_unused_name, "www.foodheart.org"
+set :server_name, "p.webdev.sg"
+# set :server_unused_name, "www.foodheart.org"
 
 set :ssh_options, {
   port: 634
