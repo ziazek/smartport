@@ -25,8 +25,8 @@ set :keep_releases, 5
 
 # files we want symlinking to specific entries in shared.
 # IMPORTANT: swap the following 2 commented lines only after first deploy and .env is set up. A bit hacky.
-set :linked_files, %w{config/database.yml config/secrets.yml backup/.env}
-# set :linked_files, %w{config/database.yml config/secrets.yml}
+# set :linked_files, %w{config/database.yml config/secrets.yml backup/.env}
+set :linked_files, %w{config/database.yml config/secrets.yml}
 
 # dirs we want symlinking to shared
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}

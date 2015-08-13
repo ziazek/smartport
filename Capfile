@@ -4,23 +4,23 @@ require 'capistrano/setup'
 # Includes default deployment tasks
 require 'capistrano/deploy'
 
-# Includes tasks from other gems included in your Gemfile
-#
-# For documentation on these, see for example:
-#
-#   https://github.com/capistrano/rvm
-#   https://github.com/capistrano/rbenv
-#   https://github.com/capistrano/chruby
-#   https://github.com/capistrano/bundler
-#   https://github.com/capistrano/rails/tree/master/assets
-#   https://github.com/capistrano/rails/tree/master/migrations
-#
-# require 'capistrano/rvm'
-# require 'capistrano/rbenv'
+
+
+require 'capistrano/rbenv'
 # require 'capistrano/chruby'
-# require 'capistrano/bundler'
-# require 'capistrano/rails/assets'
-# require 'capistrano/rails/migrations'
+require 'capistrano/bundler'
+require 'capistrano/sidekiq'
+require 'capistrano/sidekiq/monit'
+# require 'capistrano/postgresql' # this is not from the book
+require 'capistrano/rails/assets'
+require 'capistrano/rails/migrations'
+require "whenever/capistrano"
+require 'capistrano/rails/collection'
+# require 'capistrano/cookbook'
+# require 'airbrake/capistrano3'
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
 Dir.glob('lib/capistrano/tasks/*.cap').each { |r| import r }
+
+# (custom) Loads helper methods for the tasks
+Dir.glob('lib/capistrano/**/*.rb').each { |r| import r }

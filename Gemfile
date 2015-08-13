@@ -21,6 +21,9 @@ gem 'simple_form'
 gem 'slim-rails'
 gem 'unicorn'
 gem 'unicorn-rails'
+gem 'sidekiq'
+gem 'whenever'
+
 group :development do
   gem 'better_errors'
   gem 'capistrano', '~> 3.1.0'
@@ -28,7 +31,10 @@ group :development do
   gem 'capistrano-rails', '~> 1.1.0'
   gem 'capistrano-rails-console'
   gem 'capistrano-rbenv', '~> 2.0'
-  gem 'capistrano-rvm', '~> 0.1.1'
+  # gem 'capistrano-rvm', '~> 0.1.1'
+  gem 'capistrano-sidekiq'
+  gem 'capistrano-cookbook', require: false
+  gem 'capistrano-rails-collection'
   gem 'guard-bundler'
   gem 'guard-rails'
   gem 'guard-rspec'
