@@ -1,0 +1,89 @@
+upstream unicorn {
+  server unix:/tmp/unicorn.<%= fetch(:full_app_name) %>.sock fail_timeout=0;
+}
+
+<% if fetch(:server_unused_name) %>
+server {
+  listen 80;
+  server_name <%= fetch(:server_unused_name) %>;
+  return 301 $scheme://<%= fetch(:server_name) %>$request_uri;
+}
+<% end %>
+
+server {
+  server_name <%= fetch(:server_name) %>;
+  listen 80;
+<% if fetch(:force_ssl) %>
+  return 301 https://<%= fetch(:server_name) %>$request_uri;
+<% else %>
+  root <%= fetch(:deploy_to) %>/current/public;
+
+  location ^~ /assets/ {
+    gzip_static on;
+    expires max;
+    add_header Cache-Control public;
+  }
+
+  try_files $uri/index.html $uri @unicorn;
+  location @unicorn {
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+    proxy_pass http://unicorn;
+  }
+
+  error_page 500 502 503 504 /500.html;
+  client_max_body_size 4G;
+  keepalive_timeout 10;
+<% end %>
+}
+
+<% if fetch(:enable_ssl) %>
+
+<% if fetch(:force_ssl) %>
+server {
+  listen 443;
+  ssl on;
+  ssl_protocols SSLv3 TLSv1;
+  ssl_certificate <%= fetch(:deploy_to) %>/shared/ssl_cert.crt;
+  ssl_certificate_key <%= fetch(:deploy_to) %>/shared/ssl_private_key.key;
+  server_name <%= fetch(:server_unused_name) %>;
+  return 301 $scheme://<%= fetch(:server_name) %>$request_uri;
+}
+<% end %>
+server {
+  server_name <%= fetch(:server_name) %>;
+  listen 443;
+  root <%= fetch(:deploy_to) %>/current/public;
+
+  location ^~ /assets/ {
+    gzip_static on;
+    expires max;
+    add_header Cache-Control public;
+  }
+
+  try_files $uri/index.html $uri @unicorn;
+  location @unicorn {
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header   X-Forwarded-Proto https;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+    proxy_pass http://unicorn;
+  }
+
+  error_page 500 502 503 504 /500.html;
+  client_max_body_size 4G;
+  keepalive_timeout 10;
+  ssl on;
+  ssl_certificate <%= fetch(:deploy_to) %>/shared/ssl_cert.crt;
+  ssl_certificate_key <%= fetch(:deploy_to) %>/shared/ssl_private_key.key;
+
+  #enables all versions of TLS, but not SSLv2 or 3 which are weak and now deprecated.
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+
+  #Disables all weak ciphers
+  ssl_ciphers "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:DES-CBC3-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4";
+
+  ssl_prefer_server_ciphers on;
+}#
+<% end %>
