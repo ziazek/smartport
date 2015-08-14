@@ -21,7 +21,7 @@ Model.new(:rails_database, 'Backups of the Rails Database') do
     db.host               = DB_CONFIG["host"]
     db.skip_tables        = []
     db.socket             = DB_CONFIG["socket"]
-    db.additional_options = ["-xc", "-E=utf8"]
+    db.additional_options = ["-xc", "-E=utf8", "--no-owner", "--no-acl"]
   end
 
   # http://meskyanichi.github.io/backup/v4/storages/
