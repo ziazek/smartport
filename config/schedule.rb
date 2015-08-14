@@ -5,11 +5,11 @@ set :output, "#{path}/log/cron.log"
 # ensure that the $PATH for cronjobs is the same as for our login shell
 env :PATH, ENV['PATH']
 
-# job_type :backup, "cd :path/:backup_path && :environment_variable=:environment bundle exec backup perform -t :task --config_file ./config.rb :output"
+job_type :backup, "cd :path/:backup_path && :environment_variable=:environment bundle exec backup perform -t :task --config_file ./config.rb :output"
 
-# every 60.minutes do
-#   backup 'rails_database', backup_path: 'backup'
-# end
+every 60.minutes do
+  backup 'rails_database', backup_path: 'backup'
+end
 
 # job_type :job, "cd :path && :environment_variable=:environment bundle exec script/sidekiq_pusher.rb :task :output"
 
