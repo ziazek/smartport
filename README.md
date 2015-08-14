@@ -22,7 +22,6 @@ Documentation and Support
 
 Issues
 -------------
-- TODO: install backup on S3
 
 Similar Projects
 ----------------
