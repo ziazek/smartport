@@ -5,7 +5,7 @@ set :stage, :staging
 set :branch, "master"
 
 # Nginx VirtualHost uses this
-set :server_name, "webdev.sg"
+set :server_name, "main.sg"
 # set :server_unused_name, "webdev.sg"
 
 set :ssh_options, {
@@ -14,7 +14,7 @@ set :ssh_options, {
 
 set :full_app_name, "#{fetch(:application)}_#{fetch(:stage)}"
 
-server 'webdev.sg', user: 'deploy', roles: %w{web app db}, primary: true
+server 'main.sg', user: 'deploy', roles: %w{web app db}, primary: true
 
 set :deploy_to, "/home/#{fetch(:deploy_user)}/apps/#{fetch(:full_app_name)}"
 
