@@ -25,7 +25,15 @@ gem 'unicorn-rails'
 gem 'sidekiq'
 gem 'whenever'
 
+gem 'font-awesome-rails'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-metisMenu'
+  gem 'rails-assets-morrisjs'
+end
+
 group :development do
+  gem 'guard-livereload', require: false
   gem 'better_errors'
   gem 'capistrano', '~> 3.1.0'
   gem 'capistrano-bundler'

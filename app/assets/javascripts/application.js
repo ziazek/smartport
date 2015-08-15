@@ -14,4 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require metisMenu
+//= require raphael
+//= require morrisjs
 //= require_tree .
