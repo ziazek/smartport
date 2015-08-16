@@ -27,9 +27,13 @@ gem 'whenever'
 
 gem 'font-awesome-rails'
 
+gem 'groupdate'
+gem 'gon'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-metisMenu'
   gem 'rails-assets-morrisjs'
+  gem 'rails-assets-highcharts'
 end
 
 group :development do

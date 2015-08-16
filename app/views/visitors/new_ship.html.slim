@@ -1,0 +1,39 @@
+#page-wrapper
+  .row
+    .col-lg-12
+      h1.page-header
+        | New Shipment
+  .row
+    .col-lg-12
+      .panel.panel-default
+        .panel-heading
+          | This is the starting point for every ship that comes in to berth.
+        .panel-body
+          .row
+            .col-lg-6
+              form[role="form" method="GET" action="#{root_path}"]
+                .form-group
+                  label
+                    | Throughput
+                  input.form-control[name="throughput" placeholder="1100"]
+                  p.help-block
+                    | Total cargo to be loaded and unloaded (TEUs)
+
+                .form-group
+                  label
+                    | Tonnage
+                  select.form-control[name="tonnage"]
+                    option
+                      | 1K-5K
+                    option
+                      | 5K-10K
+                    option
+                      | >10K
+                .form-group
+                  label
+                    | Number of cranes
+                  input.form-control[name="cranes" placeholder="3"]
+                  p.help-block
+                    | No. of cranes deployed to the ship
+                button.btn.btn-primary[type="submit"]
+                  | Next

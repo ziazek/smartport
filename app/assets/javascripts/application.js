@@ -15,6 +15,5 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require metisMenu
-//= require raphael
-//= require morrisjs
+//= require highcharts
 //= require_tree .
