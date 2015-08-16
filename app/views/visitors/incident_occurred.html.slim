@@ -5,23 +5,23 @@
         | T.O.R.V.S.
   .row
     .col-lg-3.col-md-6
-      #panel-records.panel.panel-primary
+      .panel.panel-primary
         .panel-heading
           .row
             .col-xs-3
-              i.fa.fa-files-o.fa-4x
+              i.fa.fa-files-o.fa-5x
             .col-xs-9.text-right
               .huge
-                | 190
+                | 168
               div
                 | Records with similar attributes
 
     .col-lg-3.col-md-6
-      #panel-incidents.panel.panel-green
+      .panel.panel-green
         .panel-heading
           .row
             .col-xs-3
-              i.fa.fa-tasks.fa-4x
+              i.fa.fa-tasks.fa-5x
             .col-xs-9.text-right
               .huge
                 | 0
@@ -29,32 +29,32 @@
                 | Incidents 
 
     .col-lg-3.col-md-6
-      #panel-eut.panel.panel-yellow
+      .panel.panel-yellow
         .panel-heading
           .row
             .col-xs-3
-              i.fa.fa-ship.fa-4x
+              i.fa.fa-ship.fa-5x
             .col-xs-9.text-right
               .huge
-                | 9:00pm
+                | 10h 0min
               div
                 | Expected Unberthing Time
 
     .col-lg-3.col-md-6
-      #panel-delay.panel.panel-green
+      #panel-delay.panel.panel-red
         .panel-heading
           .row
             .col-xs-3
-              i.fa.fa-support.fa-4x
+              i.fa.fa-support.fa-5x
             .col-xs-9.text-right
               .huge
-                | 0 min
+                | 5h
               div
                 | Delay
 
   .row
     .col-lg-8
-      .panel.panel-green
+      .panel.panel-default
         .panel-heading
           i.fa.fa-bar-chart-o.fa-fw
           | Past Ship Data
@@ -79,7 +79,7 @@
                     | Separated link
         .panel-body
           #chart
-      .panel.panel-primary
+      .panel.panel-default
         .panel-heading
           i.fa.fa-bar-chart-o.fa-fw
           |  Event Reporting
@@ -126,9 +126,9 @@
             .col-lg-6
               h4 Incidents
               p
-                button#action2.btn.btn-danger Container Damage
+                button#action2.btn.btn-danger Crane Breakdown
               p
-                button#action3.btn.btn-danger Crane Breakdown
+                button.btn.btn-danger Container Damage
               p
                 button.btn.btn-danger Ship Malfunction
               p
@@ -136,148 +136,70 @@
               p
                 button.btn.btn-danger Negative Connectivity
 
-      .panel.panel-info
-        .panel-heading
-          i.fa.fa-bar-chart-o.fa-fw
-          |  Actions Taken
-          .pull-right
-            .btn-group
-              button.btn.btn-default.btn-xs.dropdown-toggle[type="button" data-toggle="dropdown"]
-                |  Actions 
-                span.caret
-              ul.dropdown-menu.pull-right[role="menu"]
-                li
-                  a[href="#"]
-                    | Action
-                li
-                  a[href="#"]
-                    | Another action
-                li
-                  a[href="#"]
-                    | Something else here
-                li.divider
-                li
-                  a[href="#"]
-                    | Separated link
-        .panel-body
-          form action=""
-            .form-group
-              label
-                | Enter Action Taken
-              input.form-control
-            .form-group
-              label
-                | Estimated Time Required
-              input.form-control
-            .form-group
-              label
-                | Response to Incident
-              .checkbox
-                label
-                  input[type="checkbox" value=""]
-                  | First Activity delayed
-              .checkbox
-                label
-                  input[type="checkbox" value=""]
-                  | Container Damage
-              .checkbox
-                label
-                  input[type="checkbox" value=""]
-                  | Crane Breakdown
-            .form-group
-              label
-                | Effectiveness
-              .radio
-                label
-                  input#optionsRadios1[type="radio" name="optionsRadios" value="option1" checked]
-                  | Low
-              .radio
-                label
-                  input#optionsRadios2[type="radio" name="optionsRadios" value="option2"]
-                  | Moderate
-              .radio
-                label
-                  input#optionsRadios3[type="radio" name="optionsRadios" value="option3"]
-                  | High
-            button.btn.btn-primary[type="submit"]
-              | Submit 
 
     .col-lg-4
       .panel.panel-default
         .panel-heading
           i.fa.fa-bell.fa-fw
-          |  Notifications (future Whispir integration) 
+          |  Notifications Panel 
         .panel-body
           .list-group
-            a.list-group-item.show3[href="#"]
-              i.fa.fa-building.fa-fw
-              | Crane Breakdown - Delayed by 5 hours
-              span.pull-right.text-muted.small
-                em
-                  |  15 minutes ago
-            a.list-group-item.show2[href="#"]
-              i.fa.fa-archive.fa-fw
-              | Container Damage - Delayed by 6 hours
-              span.pull-right.text-muted.small
-                em
-                  |  30 minutes ago
+            / a.list-group-item[href="#"]
+            /   i.fa.fa-comment.fa-fw
+            /   |  New Comment 
+            /   span.pull-right.text-muted.small
+            /     em
+            /       | 4 minutes ago
+            / a.list-group-item[href="#"]
+            /   i.fa.fa-twitter.fa-fw
+            /   |  3 New Followers 
+            /   span.pull-right.text-muted.small
+            /     em
+            /       | 12 minutes ago
+            / a.list-group-item[href="#"]
+            /   i.fa.fa-envelope.fa-fw
+            /   |  Message Sent 
+            /   span.pull-right.text-muted.small
+            /     em
+            /       | 27 minutes ago
+            / a.list-group-item[href="#"]
+            /   i.fa.fa-tasks.fa-fw
+            /   |  New Task 
+            /   span.pull-right.text-muted.small
+            /     em
+            /       | 43 minutes ago
+            / a.list-group-item[href="#"]
+            /   i.fa.fa-upload.fa-fw
+            /   |  Server Rebooted 
+            /   span.pull-right.text-muted.small
+            /     em
+            /       | 11:32 AM
+            / a.list-group-item[href="#"]
+            /   i.fa.fa-bolt.fa-fw
+            /   |  Server Crashed! 
+            /   span.pull-right.text-muted.small
+            /     em
+            /       | 11:13 AM
+            / a.list-group-item[href="#"]
+            /   i.fa.fa-warning.fa-fw
+            /   |  Server Not Responding 
+            /   span.pull-right.text-muted.small
+            /     em
+            /       | 10:57 AM
             a.list-group-item.show1[href="#"]
-              i.fa.fa-info.fa-fw
+              i.fa.fa-shopping-cart.fa-fw
               |  First Activity - Delayed by 30min
               span.pull-right.text-muted.small
                 em
-                  | 45 minutes ago
+                  | 5 minutes ago
             a.list-group-item[href="#"]
               i.fa.fa-ship.fa-fw
               |  New Shipment created 
               span.pull-right.text-muted.small
                 em
-                  | 2 hours ago
+                  | 1 hour ago
           a.btn.btn-default.btn-block[href="#"]
             | View All Alerts
-      #panel-recommend.panel.panel-primary
-        .panel-heading
-          i.fa.fa-play.fa-fw
-          |  Recommended Actions (Heuristics)
-        .panel-body
-          .list-group
-            a.list-group-item.show3[href="#"]
-              i.fa.fa-circle.fa-fw
-              |  Past Successful Action for Crane 2
-              span.pull-right.text-muted.small
-                em
-                  |   100%
-            a.list-group-item.show3[href="#"]
-              i.fa.fa-circle.fa-fw
-              |  Past Successful Action for Crane 1
-              span.pull-right.text-muted.small
-                em
-                  |   100%
-            a.list-group-item.show2[href="#"]
-              i.fa.fa-circle.fa-fw
-              |  Past Successful Action 4
-              span.pull-right.text-muted.small
-                em
-                  |   90%
-            a.list-group-item.show2[href="#"]
-              i.fa.fa-circle.fa-fw
-              |  Past Successful Action 3
-              span.pull-right.text-muted.small
-                em
-                  |   80%
-            a.list-group-item.show2[href="#"]
-              i.fa.fa-circle.fa-fw
-              |  Past Successful Action for Container Damage
-              span.pull-right.text-muted.small
-                em
-                  |   70%
-            a.list-group-item.show1[href="#"]
-              i.fa.fa-circle.fa-fw
-              |  Contact Ship Captain
-              span.pull-right.text-muted.small
-                em
-                  |   100%
-          
       .chat-panel.panel.panel-default
         .panel-heading
           i.fa.fa-comments.fa-fw

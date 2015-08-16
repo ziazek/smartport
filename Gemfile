@@ -29,11 +29,13 @@ gem 'font-awesome-rails'
 
 gem 'groupdate'
 gem 'gon'
+gem 'jquery-turbolinks'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-metisMenu'
   gem 'rails-assets-morrisjs'
   gem 'rails-assets-highcharts'
+  gem 'rails-assets-underscore'
 end
 
 group :development do

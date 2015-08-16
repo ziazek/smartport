@@ -3,7 +3,7 @@ require 'csv'
 class Chart
   attr_reader :data, :filtered, :result
   def initialize
-    csv = CSV.read(File.join(Rails.root, 'lib', 'assets','combined3.csv'), headers: true, header_converters: :symbol)
+    csv = CSV.read(File.join(Rails.root, 'lib', 'assets','combined6.csv'), headers: true, header_converters: :symbol)
     @data = []
     csv.each do |row|
       @data << row.to_hash
@@ -11,7 +11,7 @@ class Chart
   end
 
   def averages_by_month(crane: 0, container: 0)
-    filtered = data.select { |row| row[:range_of_tonnage] == "1K-5K" && row[:gross_vessel_throughput].to_f >= 1000.0 && row[:gross_vessel_throughput].to_f < 1200.0 && row[:incident__crane].to_i == crane && row[:incident__container].to_i == container }
+    filtered = data.select { |row| row[:range_of_tonnage] == "1K-5K" && row[:gross_vessel_throughput].to_f >= 1000.0 && row[:gross_vessel_throughput].to_f < 1300.0 && row[:incident__crane].to_i == crane && row[:incident__container].to_i == container }
     months = filtered.group_by_month { |row| row.fetch(:actual_berth) }
     averages = {}
     months.each do |k, v|
@@ -48,9 +48,13 @@ class Chart
 
   def main_average
     ary = []
-    main_ave = @result.map{ |r| r[:average_hours] }.inject(:+) / @result.size
-    ary << [@result.first.key, main_ave]
-    ary << [@result.last.key, main_ave]
+    main_ave = @result.map{ |r, v| v[:average_hours] }.inject(:+) / @result.size
+    ary << [@result.keys.first.to_f * 1000, main_ave.round(1)]
+    ary << [@result.keys.last.to_f * 1000, main_ave.round(1)]
+  end
+
+  def records
+    records = @result.map{ |r, v| v[:records] }.inject(:+)
   end
 end
 
